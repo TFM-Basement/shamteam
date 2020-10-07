@@ -13,10 +13,10 @@ do
     local windows = {
         [WINDOW_GUI] = {
             open = function(pn, p_data, tab)
-                local T = {{"event:help!Welcome","?"},{"event:options","O"},{"event:profile","P"}}
+                local T = {{72,"?"},{79,"O"},{80,"P"}}
                 local x, y = 800-(30*(#T+1)), 25
                 for i,m in ipairs(T) do
-                    ui.addTextArea(WINDOW_GUI+i,"<p align='center'><a href='"..m[1].."'>"..m[2], pn, x+(i*30), y, 20, 0, 1, 0, .7, true)
+                    ui.addTextArea(WINDOW_GUI+i,"<p align='center'><a href='event:triggerkey!"..m[1].."'>"..m[2], pn, x+(i*30), y, 20, 0, 1, 0, .7, true)
                 end
             end,
             close = function(pn, p_data)
@@ -208,6 +208,25 @@ do
             end,
             type = MUTUALLY_EXCLUSIVE,
             players = {}
+        },
+        [WINDOW_PROFILE] = {
+            open = function(pn, p_data)
+                local player = players[pn]
+                local currentExp = player.exp
+                local currentLevel = expToLevel(currentExp)
+                local str = ("%s\n\nEXP: %s / %s\n%s: %s"):format(
+                        pn, currentExp, levelToExp(currentLevel + 1),
+                        player:tlFmt("level"), currentLevel)
+
+                ui.addTextArea(WINDOW_PROFILE+1, str, pn, 170, 60, 70, nil, 1, 0, .8, true)
+            end,
+            close = function(pn, p_data)
+                for i = 1, 1 do
+                    ui.removeTextArea(WINDOW_PROFILE+i, pn)
+                end
+            end,
+            type = INDEPENDENT,
+            players = {},
         },
         [WINDOW_DB_MAP] = {
             open = function(pn, p_data)

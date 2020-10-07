@@ -32,3 +32,14 @@ local sendChatMessageStaff = function(msg, ...)
         end
     end
 end
+
+local expToLevel = function(x)
+    return math.floor (
+        (EXP_ADVANCE_HALF + math.sqrt(EXP_ADVANCE_HALF * EXP_ADVANCE_HALF - 4 * EXP_ADVANCE_HALF * (-x)))
+            / (2 * EXP_ADVANCE_HALF)
+    )
+end
+
+local levelToExp = function(l)
+    return EXP_ADVANCE_HALF * l * l - EXP_ADVANCE_HALF * l
+end

@@ -33,6 +33,17 @@ keys[79] = {
     trigger = DOWN_ONLY
 }
 
+keys[80] = {
+    func = function(pn) -- p (display player profile)
+        if TsmWindow.isOpened(WINDOW_PROFILE, pn) then
+            TsmWindow.close(WINDOW_PROFILE, pn)
+        elseif players[pn] then
+            TsmWindow.open(WINDOW_PROFILE, pn)
+        end
+    end,
+    trigger = DOWN_ONLY
+}
+
 keys[85] = {
     func = function(pn) -- u (undo spawn)
         if ThisRound:isShaman(pn) and not ThisRound.is_lobby then

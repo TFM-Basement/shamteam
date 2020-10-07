@@ -28,8 +28,9 @@ local WINDOW_GUI = bit32.lshift(0, 7)
 local WINDOW_HELP = bit32.lshift(1, 7)
 local WINDOW_LOBBY = bit32.lshift(2, 7)
 local WINDOW_OPTIONS = bit32.lshift(3, 7)
-local WINDOW_DB_MAP = bit32.lshift(4, 7)
-local WINDOW_DB_HISTORY = bit32.lshift(5, 7)
+local WINDOW_PROFILE = bit32.lshift(4, 7)
+local WINDOW_DB_MAP = bit32.lshift(5, 7)
+local WINDOW_DB_HISTORY = bit32.lshift(6, 7)
 
 --- TextAreas
 local TA_SPECTATING = 9000
@@ -99,3 +100,7 @@ local PLAYER_OPTIONS = {
     [OPT_GUI] = {"name_gui", "desc_gui"},
     [OPT_CIRCLE] = {"name_circle", "desc_circle"},
 }
+
+--- EXP / LEVEL
+local EXP_ADVANCE_HALF = 50 -- should be half of the EXP required to reach level 2
+local EXP_ADVANCE = EXP_ADVANCE_HALF * 2

@@ -14,6 +14,13 @@ callbacks["options"] = function(pn, action)
     end
 end
 
+callbacks["triggerkey"] = function(pn, key)
+    key = tonumber(key)
+    if key then
+        eventKeyboard(pn, key, 0, 0)
+    end
+end
+
 callbacks["unafk"] = function(pn)
     SetSpectate(pn, false)
     tfm.exec.chatMessage(tl("unafk_message", pn), pn)
